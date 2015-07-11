@@ -1,26 +1,25 @@
 export default function html(literalSections, ...substs) {
     // Use raw literal sections: we don’t want
     // backslashes (\n etc.) to be interpreted
-    let raw = literalSections.raw;
-
+    let raw = literalSections.split("\\");
     let result = '';
 
     substs.forEach((subst, i) => {
-        // Retrieve the literal section preceding
-        // the current substitution
+    //     // Retrieve the literal section preceding
+    //     // the current substitution
         let lit = raw[i];
 
-        // In the example, map() returns an array:
-        // If substitution is an array (and not a string),
-        // we turn it into a string
+    //     // In the example, map() returns an array:
+    //     // If substitution is an array (and not a string),
+    //     // we turn it into a string
         if (Array.isArray(subst)) {
             subst = subst.join('');
         }
 
-        // If the substitution is preceded by a dollar sign,
-        // we escape special characters in it
+    //     // If the substitution is preceded by a dollar sign,
+    //     // we escape special characters in it
         if (lit.endsWith('$')) {
-            subst = htmlEscape(subst);
+            subst = $tmpl.html_escape(subst);
             lit = lit.slice(0, -1);
         }
         result += lit;

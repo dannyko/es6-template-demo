@@ -6,9 +6,12 @@
 		<script src="jspm_packages/system.js"></script>
 		<script src="config.js"></script>
 		<script>
+		  $tmpl = {} ; // initialize the namespace for the the HTML5 template library features and attach it to the global namespace
 		  System.import('main').then(() => {
-			  	console.log('check') ;
-		  		console.log(html) ;
+			    console.log($tmpl.table([
+			      { first: '<Jane>', last: 'Bond' },
+			      { first: 'Lars', last: '<Croft>' }
+			    ]));		  	
 			  }
 		  ) ;
 		</script>
